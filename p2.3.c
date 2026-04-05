@@ -1,101 +1,84 @@
+
 #include <stdio.h>
 #include <stdlib.h>
+int main() {
+    int choice, num, result;
 
-void even_odd();
-void positive_negative(int num);
-
-int main() 
-{
-    int choice,num, a, b, c, sum, temp;
-
-    while (1) 
-    {
-       
-        printf("\n--- Logical Operations Menu ---\n");
-        printf("1. Check Even or Odd\n");
-        printf("2. Check Positive or Negative\n");
-        printf("3. Find Greatest of Three Numbers\n");
-        printf("4. Sum of Digits\n");
-        printf("5. Exit\n");
-        printf("Enter your choice: ");
+    while (1) {
+        printf("\n--- Menu-Driven Application (Functions) ---");
+        printf("\n1. Even or Odd (Arg, No Return)");
+        printf("\n2. Positive or Negative (No Arg, No Return)");
+        printf("\n3. Greatest of Three (No Arg, Return)");
+        printf("\n4. Sum of Digits (Arg, Return)");
+        printf("\n5. Exit");
+        printf("\nEnter choice: ");
         scanf("%d", &choice);
 
-        switch (choice) 
-        {
+
+// 1. With Argument and With Return Type (Sum of Digits)
+int sumOfDigits(int n) {
+    int sum = 0;
+    n = abs(n);
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+
+// 2. With Argument and Without Return Type (Even or Odd)
+void checkEvenOdd(int n) {
+    if (n % 2 == 0)
+        printf("%d is Even.\n", n);
+    else
+        printf("%d is Odd.\n", n);
+}
+
+// 3. Without Argument and With Return Type (Greatest of Three)
+int getGreatest() {
+    int a, b, c;
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
+    if (a >= b && a >= c) return a;
+    else if (b >= a && b >= c) return b;
+    else return c;
+}
+
+// 4. Without Argument and Without Return Type (Positive or Negative)
+void checkPositiveNegative() {
+    int n;
+    printf("Enter a number: ");
+    scanf("%d", &n);
+    if (n > 0) printf("%d is Positive.\n", n);
+    else if (n < 0) printf("%d is Negative.\n", n);
+    else printf("The number is Zero.\n");
+}
+
+
+        switch (choice) {
             case 1:
-            even_odd();
-            break;
-                
-            case 2:
-            printf("Enter a number: ");
+                printf("Enter an integer: ");
                 scanf("%d", &num);
-                positive_negative(num);
-               
-             break;
-
-
-            case 3:
-                       printf("Enter three numbers: ");
-                scanf("%d %d %d", &a, &b, &c);
-                if (a >= b && a >= c)
-                    printf("%d is the greatest.\n", a);
-                else if (b >= a && b >= c)
-                    printf("%d is the greatest.\n", b);
-                else
-                    printf("%d is the greatest.\n", c);
+                checkEvenOdd(num); // Calling Type 2
                 break;
-
+            case 2:
+                checkPositiveNegative(); // Calling Type 4
+                break;
+            case 3:
+                result = getGreatest(); // Calling Type 3
+                printf("The greatest number is: %d\n", result);
+                break;
             case 4:
                 printf("Enter a number: ");
                 scanf("%d", &num);
-                sum = 0;
-                temp = abs(num); 
-                while (temp > 0) 
-                {
-                    sum += temp % 10;
-                    temp /= 10;
-                }
-                printf("Sum of digits: %d\n", sum);
+                result = sumOfDigits(num); // Calling Type 1
+                printf("Sum of digits: %d\n", result);
                 break;
-
             case 5:
-                printf("Exiting the program. Goodbye!\n");
                 exit(0);
-                break;
-              
-              
-
-           
+            default:
+                printf("Invalid Choice!\n");
         }
     }
-
     return 0;
 }
-
-void even_odd()
-{ 
-          int num;
-          printf("Enter an integer: ");
-                scanf("%d", &num);
-                if (num % 2 == 0)
-                    printf("%d is Even.\n", num);
-                else
-                    printf("%d is Odd.\n", num);
-               
-
-}
-
-         
-void positive_negative( int num)
-{
-  
-      if (num > 0)
-         printf("%d
-         
-         is Positive.\n", num);
-      else if (num < 0)
-         printf("%d is Negative.\n", num);
-      else
-         printf("The number is Zero.\n");
-}        
-
